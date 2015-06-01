@@ -23,7 +23,7 @@ declare function app:test($node as node(), $model as map(*)) {
 };
 
 declare function app:listInventories($node as node(), $model as map(*)) {
-    <ol>
+    <ol class="cts vertical">
         {app:getInventories()}
     </ol>
 };
