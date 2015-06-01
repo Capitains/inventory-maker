@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meta xmlns="http://exist-db.org/xquery/repo">
+    <description>Capitains Inventory Maker</description>
+    <author>Thibault Clérice</author>
+    <author>Open Philology Project</author>
+    <author>Perseids</author>
+    <website/>
+    <status>alpha</status>
+    <license>GNU-LGPL</license>
+    <copyright>true</copyright>
+    <type>application</type>
+    <target>inventory-maker</target>
+    <prepare>pre-install.xql</prepare>
+    <finish/>
+    <deployed>2015-06-01T15:07:00.541+02:00</deployed>
+</meta>

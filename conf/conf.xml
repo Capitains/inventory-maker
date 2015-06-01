@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cts>
+    <repositories inventoryCollection="/db/apps/canonical-inventory/data"/>
+    <collections>
+        <collection namespace="greekLit">/db/apps/canonical-greekLit/data</collection>
+        <collection namespace="latinLit">/db/apps/canonical-latinLit/data</collection>
+        <collection namespace="pdlrefwk">/db/apps/canonical-pdlrefwk/data</collection>
+        <collection namespace="norseLit">/db/apps/canonical-norseLit/data</collection>
+        <collection namespace="itaLit">/db/apps/canonical-itaLit/data</collection>
+        <collection namespace="angLit">/db/apps/canonical-angLit/data</collection>
+        <collection namespace="farsiLit">/db/apps/canonical-farsiLit/data</collection>
+    </collections>
+</cts>
