@@ -3,13 +3,39 @@
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-6">
-                    <div data-template="app:listInventories"/>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        <ol class="cts vertical" style="min-height:10px; border:1px dashed black;"/>
-                    </div>
+                <div class="col-md-12">
+                    <form class="form-horizontal" method="GET" action="inventory.html">
+                        <h2>Select an inventory</h2>
+                        <div class="row">
+                            <div class="col-md-1 text-right">
+                                <input type="radio" name="status" value="update"/>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Update</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-control" data-template="app:listInventories"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1 text-right">
+                                <input type="radio" name="status" value="create"/>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Create</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="inventoryname"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-2">
+                                <input type="submit" value="Go !" class="btn btn-primary"/>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
