@@ -79,6 +79,19 @@ declare %private function ctsh:generateText($urn as xs:string, $filter as node()
             element ti:translation {
                 $text/@*[not(name(.) = ("workUrn", "projid"))],
                 attribute workUrn { $urn },
-                $text/child::node()
+                $text/child::node(),
+                ctsh:generateOnline(fn:string($text/@urn))
             }
+};
+
+declare %private function ctsh:generateOnline($urn) {
+    let $texts := $ctsh:collections//node()[@n = $urn]
+    (:let $doc := fn:document-uri($text):)
+    return 
+        element ti:online {
+            (:attribute docname {
+                $doc
+            },:)
+            for $text in $texts return element docname { fn:base-uri($text) }
+        }
 };

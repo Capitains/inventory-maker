@@ -116,6 +116,10 @@ declare function app:generateInventory($node as node(), $model as map(*)) {
     
 };
 
+declare function app:confirmInventory($node as node(), $model as map(*)) {
+    <input type="submit" name="submit" class="btn btn-primary" value="Confirm edition of {request:get-parameter("inventory", "") } ?" />
+};
+
 declare function app:getInventoryPath($inventory as xs:string) {
     fn:string-join((fn:string($app:conf//repositories/@inventoryCollection), "/", $inventory))
 };
