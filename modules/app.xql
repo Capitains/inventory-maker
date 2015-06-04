@@ -88,9 +88,9 @@ declare function app:getInventory($node as node(), $model as map(*)) {
             return
                 if ($conf//mode/text() = "create")
                 then
-                    ()
+                    <li>Drop data here</li>
                 else
-                    app:formatResources(app:getCapabilities($conf//target/text()), ())
+                    <li>{app:formatResources(app:getCapabilities($conf//target/text()), ())}</li>
         
         }
     </ol>
@@ -187,28 +187,32 @@ declare function app:getResources() {
             }
     }
 };
-declare function app:formatResources($inventory as node()*, $filter as node()*) {
+declare function app:formatResourcesBackUp($inventory as node()*, $filter as node()*) {
     for $tg in $inventory//textgroup[count($filter[@urn = ./@urn]) = 0]
         return 
         element li {
             $tg/@urn,
             fn:string($tg/text()),
+            (:
             element input {
                 attribute type { "hidden" },
                 attribute name { "textgroup[]" },
                 attribute value { fn:string($tg/@urn) }
             },
+            :)
             element ol {
                 for $wk in $tg/work[count($filter[@urn = ./@urn]) = 0]
                     return 
                     element li {
                         $wk/@urn,
                         fn:string($wk/text()),
+            (:
                         element input {
                             attribute type { "hidden" },
                             attribute name { "work[]" },
                             attribute value { fn:string($wk/@urn) }
                         },
+            :)
                         element ol {
                             for $ed in $wk/edition[count($filter[@urn = ./@urn]) = 0]
                                 return 
@@ -236,4 +240,61 @@ declare function app:formatResources($inventory as node()*, $filter as node()*) 
                     }
             }
         }
+};
+
+declare function app:formatResources($inventory as node()*, $filter as node()*) {
+    for $tg in $inventory//textgroup[count($filter[@urn = ./@urn]) = 0]
+        return 
+        (:
+        element li {
+            $tg/@urn,
+            fn:string($tg/text()),
+            element input {
+                attribute type { "hidden" },
+                attribute name { "textgroup[]" },
+                attribute value { fn:string($tg/@urn) }
+            },
+        :)
+            element ol {
+                for $wk in $tg/work[count($filter[@urn = ./@urn]) = 0]
+                    return 
+            (:        element li {
+                        $wk/@urn,
+                        fn:string($wk/text()),
+            
+                        element input {
+                            attribute type { "hidden" },
+                            attribute name { "work[]" },
+                            attribute value { fn:string($wk/@urn) }
+                        },
+            :)
+                        element ol {
+                            for $ed in $wk/edition[count($filter[@urn = ./@urn]) = 0]
+                                return 
+                                element li {
+                                    $ed/@urn,
+                                    fn:string-join(("Edition : ", $tg/text(), ",", $wk/text(), ",", fn:string($ed/text()))),
+                                    element input {
+                                        attribute type { "hidden" },
+                                        attribute name { "text[]" },
+                                        attribute value { fn:string($ed/@urn) }
+                                    }
+                                }, 
+                            for $tr in $wk/translation[count($filter[@urn = ./@urn]) = 0]
+                                return 
+                                element li {
+                                    $tr/@urn,
+                                    fn:string-join(("Translation (", fn:string($tr/@xml:lang) , "): ", fn:string($tr/text()))),
+                                    element input {
+                                        attribute type { "hidden" },
+                                        attribute name { "text[]" },
+                                        attribute value { fn:string($tr/@urn) }
+                                    }
+                                }   
+                        }
+                    }
+                    (:
+            }
+        }
+        :)
 };
