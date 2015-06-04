@@ -39,33 +39,43 @@ declare %private function ctsh:splitProjid($projid) as xs:string {
  : Then edition so we can filter out as we go
  :  :)
 declare function ctsh:generateInventory($tgs, $wks, $txts) {
-    let $texts := for $txt in $txts return ctsh:generateText($txt, ())
-    return $texts
-};
-
-declare %private function ctsh:generateTextgroup($urn as xs:string) {
-    let $textgroup := $ctsh:collections//ti:textgroup[@urn = $urn]
+    let $texts := for $txt in $txts return ctsh:generateText($txt)
+    let $works := ctsh:generateWork($wks, $texts)
+    let $textgroups := ctsh:generateTextgroup($tgs, $works)
     return 
-    element ti:textgroup {
-        $textgroup/@*[not(name(.) = ("projid"))],
-        $textgroup/child::node(),
-        ctsh:generateWork($urn, ())
-    }
-};
-
-declare %private function ctsh:generateWork($urn as xs:string, $filter as node()*) {
-    let $works := $ctsh:collections//ti:work[starts-with(@urn, $urn)]
-    return 
-        for $work in $works
-        return
-        element ti:work {
-            $work/@*[not(name(.) = ("projid"))],
-            $work/child::node()[not(local-name(.) = ("translation", "edition"))],
-            ctsh:generateText(fn:string($work/@urn), ())
+        element ti:TextInventory {
+            $textgroups
         }
 };
 
-declare %private function ctsh:generateText($urn as xs:string, $filter as node()*) {
+declare %private function ctsh:generateTextgroup($input as xs:string*, $texts as node()*) {
+    let $urns := ($input, distinct-values($texts//@groupUrn))
+    return 
+        for $urn in $urns
+        let $textgroup := $ctsh:collections//ti:textgroup[@urn = $urn]
+        return
+        element ti:textgroup {
+            $textgroup/@urn,
+            $texts[./@groupUrn = $urn]
+        }
+};
+
+declare %private function ctsh:generateWork($input as xs:string*, $texts as node()*) {
+    let $urns := ($input, distinct-values($texts//@workUrn))
+    return 
+        for $urn in $urns
+        let $work := $ctsh:collections//ti:work[@urn = $urn]
+        return
+        element ti:work {
+            $work/@xml:lang,
+            $work/@groupUrn,
+            $work/@urn,
+            $work/child::node()[not(local-name(.) = ("translation", "edition"))],
+            $texts[./@workUrn = $urn]
+        }
+};
+
+declare %private function ctsh:generateText($urn as xs:string) {
     let $texts := $ctsh:collections//(ti:edition | ti:translation)[starts-with(@urn, $urn)]
     return
     for $text in $texts 
@@ -73,14 +83,14 @@ declare %private function ctsh:generateText($urn as xs:string, $filter as node()
         if (name($text) = "edition")
         then
             element ti:edition {
-                $text/@*[not(name(.) = ("workUrn", "projid"))],
-                attribute workUrn { $urn },
+                $text/@workUrn,
+                $text/@urn,
                 $text/child::node()
             }
         else
             element ti:translation {
-                $text/@*[not(name(.) = ("workUrn", "projid"))],
-                attribute workUrn { $urn },
+                $text/@workUrn,
+                $text/@urn,
                 $text/child::node(),
                 ctsh:generateOnline(fn:string($text/@urn))
             }
