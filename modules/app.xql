@@ -104,6 +104,7 @@ declare function app:generateInventory($node as node(), $model as map(*)) {
         element textarea {
             attribute name { "inventory-doc" },
             ctsh:generateInventory(
+                request:get-parameter("inventory", "error.xml"),
                 request:get-parameter("textgroup[]", ()),
                 request:get-parameter("work[]", ()),
                 request:get-parameter("text[]", ())

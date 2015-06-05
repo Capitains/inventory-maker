@@ -38,12 +38,13 @@ declare %private function ctsh:splitProjid($projid) as xs:string {
  : Then works
  : Then edition so we can filter out as we go
  :  :)
-declare function ctsh:generateInventory($tgs, $wks, $txts) {
+declare function ctsh:generateInventory($invFile, $tgs, $wks, $txts) {
     let $texts := for $txt in $txts return ctsh:generateText($txt)
     let $works := ctsh:generateWork($wks, $texts)
     let $textgroups := ctsh:generateTextgroup($tgs, $works)
     return 
         element ti:TextInventory {
+            attribute tiid { fn:tokenize($invFile, ".xml")[1] },
             $textgroups
         }
 };
