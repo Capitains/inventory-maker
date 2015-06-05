@@ -61,3 +61,8 @@ ol.vertical li.placeholder::before {
 ol {
     list-style-type: none;
 }
+textarea {
+    width:100%;
+    min-height:700px;
+}
+}

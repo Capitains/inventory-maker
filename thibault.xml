@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:TextInventory xmlns:ti="http://chs.harvard.edu/xmlns/cts">
+    <ti:textgroup urn="urn:cts:latinLit:phi1276">
+        <ti:work groupUrn="urn:cts:latinLit:phi1276" urn="urn:cts:latinLit:phi1276.phi001">
+            <ti:title xml:lang="eng">Satires</ti:title>
+            <ti:translation workUrn="urn:cts:latinLit:phi1276.phi001" urn="urn:cts:latinLit:phi1276.phi001.perseus-lat2">
+                <ti:label xml:lang="eng">Satires</ti:label>
+                <ti:description xml:lang="eng">
+                    Juvenal and Persius: With An English Translation, G. G. Ramsay, 1918, William Heinemann; G. P. Putnam's Son, London
+                </ti:description>
+                <ti:online docname="/db/apps/canonical-latinLit/data/phi1276/phi001/phi1276.phi001.perseus-lat2.xml">
+                    <ti:validate schema="tei-epidoc.rng"/>
+                    <ti:namespaceMapping abbreviation="tei" nsURI="http://www.tei-c.org/ns/1.0"/>
+                    <ti:citationMapping>
+                        <ti:citation label="unknown" xpath="/tei:div1[@n='?']" scope="/tei:TEI/tei:text/tei:body/tei:div">
+                            <ti:citation label="unknown" xpath="/tei:div2[@n='?']" scope="/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='?']">
+                                <ti:citation label="unknown" xpath="/tei:l[@n='?']" scope="/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='?']/tei:div[@n='?']"/>
+                            </ti:citation>
+                        </ti:citation>
+                    </ti:citationMapping>
+                </ti:online>
+            </ti:translation>
+        </ti:work>
+    </ti:textgroup>
+    <ti:textgroup urn="urn:cts:latinLit:phi1294">
+        <ti:work groupUrn="urn:cts:latinLit:phi1294" urn="urn:cts:latinLit:phi1294.phi002">
+            <ti:title xml:lang="eng">Epigrammata</ti:title>
+            <ti:translation workUrn="urn:cts:latinLit:phi1294.phi002" urn="urn:cts:latinLit:phi1294.phi002.perseus-lat2">
+                <ti:label xml:lang="eng">Epigrammata</ti:label>
+                <ti:description xml:lang="eng">
+                    M. Valerii Martialis Epigrammaton libri / recognovit W. Heraeus
+                </ti:description>
+                <ti:online docname="/db/apps/canonical-latinLit/data/phi1294/phi002/phi1294.phi002.perseus-lat2.xml">
+                    <ti:validate schema="tei-epidoc.rng"/>
+                    <ti:namespaceMapping abbreviation="tei" nsURI="http://www.tei-c.org/ns/1.0"/>
+                    <ti:citationMapping>
+                        <ti:citation label="unknown" xpath="/tei:div1[@n='?']" scope="/tei:TEI/tei:text/tei:body/tei:div">
+                            <ti:citation label="unknown" xpath="/tei:div2[@n='?']" scope="/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='?']">
+                                <ti:citation label="unknown" xpath="/tei:l[@n='?']" scope="/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='?']/tei:div[@n='?']"/>
+                            </ti:citation>
+                        </ti:citation>
+                    </ti:citationMapping>
+                </ti:online>
+            </ti:translation>
+        </ti:work>
+    </ti:textgroup>
+    <ti:textgroup urn="urn:cts:latinLit:phi0959">
+        <ti:work xml:lang="lat" groupUrn="urn:cts:latinLit:phi0959" urn="urn:cts:latinLit:phi0959.phi001">
+            <ti:title xml:lang="eng">Amores</ti:title>
+            <ti:translation workUrn="urn:cts:latinLit:phi0959.phi001" urn="urn:cts:latinLit:phi0959.phi001.perseus-lat2">
+                <ti:label xml:lang="eng">Amores</ti:label>
+                <ti:description xml:lang="eng">
+                    Amores, Epistulae, Medicamina faciei femineae, Ars amatoria, Remedia
+                            amoris, R. Ehwald, edidit ex Rudolphi Merkelii recognitione, Leipzig, B. G. Teubner, 1907
+                </ti:description>
+                <ti:memberof collection="Perseus:collection:Greco-Roman"/>
+                <ti:online docname="/db/apps/canonical-latinLit/data/phi0959/phi001/phi0959.phi001.perseus-lat2.xml">
+                    <ti:validate schema="tei-epidoc.rng"/>
+                    <ti:namespaceMapping abbreviation="tei" nsURI="http://www.tei-c.org/ns/1.0"/>
+                    <ti:citationMapping>
+                        <ti:citation label="unknown" xpath="/tei:div[@n='?']" scope="/tei:TEI/tei:text/tei:body/tei:div[@type=\'edition\']">
+                            <ti:citation label="unknown" xpath="/tei:div[@n='?']" scope="/tei:TEI/tei:text/tei:body/tei:div[@type=\'edition\']/tei:div[@n='?']">
+                                <ti:citation label="unknown" xpath="//tei:l[@n='?']" scope="/tei:TEI/tei:text/tei:body/tei:div[@type=\'edition\']/tei:div[@n='?']/tei:div[@n='?']"/>
+                            </ti:citation>
+                        </ti:citation>
+                    </ti:citationMapping>
+                </ti:online>
+            </ti:translation>
+        </ti:work>
+    </ti:textgroup>
+</ti:TextInventory>
