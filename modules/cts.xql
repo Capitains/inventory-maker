@@ -77,11 +77,11 @@ declare %private function ctsh:generateWork($input as xs:string*, $texts as node
 };
 
 declare %private function ctsh:generateText($urn as xs:string) {
-    let $texts := $ctsh:collections//(ti:edition | ti:translation)[starts-with(@urn, $urn)]
+    let $texts := $ctsh:collections//(ti:edition | ti:translation)[@urn eq $urn]
     return
     for $text in $texts 
         return
-        if (name($text) = "edition")
+        if (local-name($text) = "edition")
         then
             element ti:edition {
                 $text/@workUrn,
@@ -144,7 +144,7 @@ declare %private function ctsh:generateXpathScope($refPattern as node()*) as nod
 };
 
 declare %private function ctsh:replaceReplacementPattern($str) {
-    fn:replace($str, "\\'\$[0-9]+\\'", "'?'")
+   fn:replace(fn:replace($str, "\\'\$[0-9]+\\'", "'?'"), "\\'", "'")
 };
 
 declare function ctsh:sortRefPattern($seq) {
