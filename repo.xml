@@ -12,5 +12,4 @@
     <target>inventory-maker</target>
     <prepare>pre-install.xql</prepare>
     <finish/>
-    <deployed>2015-06-01T15:07:00.541+02:00</deployed>
 </meta>

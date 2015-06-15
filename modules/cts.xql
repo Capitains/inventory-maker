@@ -86,7 +86,8 @@ declare %private function ctsh:generateText($urn as xs:string) {
             element ti:edition {
                 $text/@workUrn,
                 $text/@urn,
-                $text/child::node()
+                $text/child::node(),
+                ctsh:generateOnline(fn:string($text/@urn))
             }
         else
             element ti:translation {
@@ -98,7 +99,7 @@ declare %private function ctsh:generateText($urn as xs:string) {
 };
 
 declare %private function ctsh:generateOnline($urn) {
-    let $text := $ctsh:collections//node()[@n = $urn][1]
+    let $text := $ctsh:collections//node()[@n eq $urn][1]
     let $doc := fn:base-uri($text)
     return 
         element ti:online {
@@ -134,9 +135,10 @@ declare %private function ctsh:generateXpathScope($refPattern as node()*) as nod
         let $count := count($matches)
         let $scope := fn:subsequence($matches, 1, $count - 1)
         let $xpath := fn:subsequence($matches, $count)
+        let $label := if($refPattern[1]/@n) then $refPattern[1]/@n else "unknown"
         return 
             element ti:citation {
-                attribute label { "unknown" },
+                attribute label { $label },
                 attribute xpath { ctsh:replaceReplacementPattern(fn:string-join($xpath, ""))},
                 attribute scope { ctsh:replaceReplacementPattern(fn:string-join($scope, ""))},
                 ctsh:generateXpathScope(fn:subsequence($refPattern, 2))
