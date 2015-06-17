@@ -57,6 +57,7 @@ declare %private function ctsh:generateTextgroup($input as xs:string*, $texts as
         return
         element ti:textgroup {
             $textgroup/@urn,
+            $textgroup/ti:groupname,
             $texts[./@groupUrn = $urn]
         }
 };
