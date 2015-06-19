@@ -120,7 +120,7 @@ declare %private function ctsh:generateOnline($urn) {
         }
 };
 declare %private function ctsh:generateCitationMapping($doc) {
-    let $refs := $doc//(refsDecl | tei:refsDecl)[@id="CTS"]
+    let $refs := $doc//(refsDecl | tei:refsDecl)[@id="CTS" or @n="CTS"]
     let $citations := ctsh:generateXpathScope(ctsh:sortRefPattern($refs//(cRefPattern | tei:cRefPattern)))
     return $citations
 };

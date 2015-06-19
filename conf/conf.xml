@@ -3,5 +3,6 @@
     <repositories inventoryCollection="/db/inventory"/>
     <collections>
         <collection namespace="latinLit">/db/apps/canonical-latinLit/data</collection>
+        <collection namespace="greekLit">/db/apps/canonical-greekLit/data</collection>
     </collections>
 </cts>
