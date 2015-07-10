@@ -34,7 +34,7 @@ declare function resource:getCapabilities($inventory as xs:string) {
                             attribute urn { ctsh:makeUrn($ed) },
                             $ed/(ti:label | ti3:label)[1]/text()
                         }, 
-                    for $tr in $wk/(ti:translation or ti3:translation)
+                    for $tr in $wk/(ti:translation | ti3:translation)
                         return 
                         element translation {
                             attribute urn { ctsh:makeUrn($tr) },
