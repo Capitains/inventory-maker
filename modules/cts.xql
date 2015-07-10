@@ -10,7 +10,7 @@ declare variable $ctsh:conf := doc("../conf/conf.xml");
 declare variable $ctsh:collections := for $path in $ctsh:conf//collection/text() return collection($path);
 
 declare function ctsh:makeUrn($element as node()) {
-    if ($element/@urn)
+    if (exists($element/@urn))
     then
         fn:string($element/@urn)
     else (: CTS 3 :)
@@ -44,6 +44,7 @@ declare function ctsh:generateInventory($invFile, $tgs, $wks, $txts) {
     let $textgroups := ctsh:generateTextgroup($tgs, $works)
     return 
         element ti:TextInventory {
+            namespace ti { "http://chs.harvard.edu/xmlns/cts" },
             attribute tiid { fn:tokenize($invFile, ".xml")[1] },
             $textgroups
         }
