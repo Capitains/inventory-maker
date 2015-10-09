@@ -148,7 +148,7 @@ declare %private function ctsh:generateXpathScope($refPattern as node()*) as nod
 };
 
 declare %private function ctsh:replaceReplacementPattern($str) {
-   fn:replace(fn:replace($str, "\\'\$[0-9]+\\'", "'?'"), "\\'", "'")
+   fn:replace(fn:replace($str, fn:string-join(("[\\'", '"]+\$[0-9]+[\\"', "']+")), "'?'"), "\\'", "'")
 };
 
 declare function ctsh:sortRefPattern($seq) {
