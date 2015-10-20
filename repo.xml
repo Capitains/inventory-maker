@@ -9,7 +9,7 @@
     <license>GNU-LGPL</license>
     <copyright>true</copyright>
     <type>application</type>
-    <version>0.1.4</version>
+    <version>0.1.5</version>
     <target>inventory-maker</target>
     <prepare>pre-install.xql</prepare>
     <finish/>
