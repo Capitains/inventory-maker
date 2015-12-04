@@ -132,7 +132,7 @@ declare %private function ctsh:generateXpathScope($refPattern as node()*) as nod
         ()
     else
         let $node := $refPattern[1]/@replacementPattern
-        let $regexp := "/+[\*\(\)|a-zA-Z0-9:\[\]@=\\\{\$'\.\s]+"
+        let $regexp := "/+[\*|a-zA-Z0-9:\[\]@=\\\{\$'\.\s]+"
         let $matches := functx:get-matches($node, $regexp)[. != ""]
         let $count := count($matches)
         let $scope := fn:subsequence($matches, 1, $count - 1)
