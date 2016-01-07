@@ -51,31 +51,31 @@ declare function ctsh:generateInventory($invFile, $tgs, $wks, $txts) {
 };
 
 declare %private function ctsh:generateTextgroup($input as xs:string*, $texts as node()*) {
-    let $urns := ($input, distinct-values($texts//@groupUrn))
+    let $urns := (distinct-values($input), distinct-values($texts//@groupUrn))
     return 
         for $urn in $urns
-        let $textgroup := $ctsh:collections//ti:textgroup[@urn = $urn]
-        return
-        element ti:textgroup {
-            $textgroup/@urn,
-            $textgroup/ti:groupname,
-            $texts[./@groupUrn = $urn]
-        }
+            let $textgroup := $ctsh:collections//ti:textgroup[@urn = $urn]
+            return
+            element ti:textgroup {
+                $textgroup[1]/@urn,
+                $textgroup/ti:groupname,
+                $texts[./@groupUrn = $urn]
+            }
 };
 
 declare %private function ctsh:generateWork($input as xs:string*, $texts as node()*) {
-    let $urns := ($input, distinct-values($texts//@workUrn))
+    let $urns := (distinct-values($input), distinct-values($texts//@workUrn))
     return 
         for $urn in $urns
-        let $work := $ctsh:collections//ti:work[@urn = $urn]
-        return
-        element ti:work {
-            $work/@xml:lang,
-            $work/@groupUrn,
-            $work/@urn,
-            $work/child::node()[not(local-name(.) = ("translation", "edition"))],
-            $texts[./@workUrn = $urn]
-        }
+            let $work := $ctsh:collections//ti:work[@urn = $urn]
+            return
+            element ti:work {
+                $work[1]/@xml:lang,
+                $work[1]/@groupUrn,
+                $work[1]/@urn,
+                $work/child::node()[not(local-name(.) = ("translation", "edition"))],
+                $texts[./@workUrn = $urn]
+            }
 };
 
 declare %private function ctsh:generateText($urn as xs:string) {
@@ -86,15 +86,15 @@ declare %private function ctsh:generateText($urn as xs:string) {
         if (local-name($text) = "edition")
         then
             element ti:edition {
-                $text/@workUrn,
-                $text/@urn,
+                $text[1]/@workUrn,
+                $text[1]/@urn,
                 $text/child::node(),
                 ctsh:generateOnline(fn:string($text/@urn))
             }
         else
             element ti:translation {
-                $text/@workUrn,
-                $text/@urn,
+                $text[1]/@workUrn,
+                $text[1]/@urn,
                 $text/child::node(),
                 ctsh:generateOnline(fn:string($text/@urn))
             }
