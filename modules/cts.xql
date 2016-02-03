@@ -95,6 +95,7 @@ declare %private function ctsh:generateText($urn as xs:string) {
             element ti:translation {
                 $text[1]/@workUrn,
                 $text[1]/@urn,
+                $text[1]/@xml:lang,
                 $text/child::node(),
                 ctsh:generateOnline(fn:string($text/@urn))
             }
